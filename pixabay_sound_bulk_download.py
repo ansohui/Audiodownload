@@ -22,8 +22,8 @@ BASE_URL       = "https://pixabay.com/en/"
 SEARCH_URL     = f"{BASE_URL}sound-effects/search/{SEARCH_QUERY.replace(' ', '-')}/"
 
 HEADLESS       = False
-PAGE_START     = 6
-PAGE_END       = 10       # 원하는 페이지 범위
+PAGE_START     = 26
+PAGE_END       = 29       # 원하는 페이지 범위
 MAX_ITEMS      = 30000
 DOWNLOAD_DIR   = str(Path.home() / "Downloads" / "pixabay_fire_alarm")
 
