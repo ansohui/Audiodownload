@@ -22,10 +22,10 @@ BASE_URL       = "https://pixabay.com/en/"
 SEARCH_URL     = f"{BASE_URL}sound-effects/search/{SEARCH_QUERY.replace(' ', '-')}/"
 
 HEADLESS       = False
-PAGE_START     = 1
-PAGE_END       = 3         # 원하는 페이지 범위
-MAX_ITEMS      = 30
-DOWNLOAD_DIR   = str(Path.home() / "Downloads" / "pixabay_fire_alarm_test")
+PAGE_START     = 2
+PAGE_END       = 125        # 원하는 페이지 범위
+MAX_ITEMS      = 30000
+DOWNLOAD_DIR   = str(Path.home() / "Downloads" / "pixabay_fire_alarm3")
 
 PIXABAY_EMAIL  = os.getenv("PIXABAY_EMAIL", "")
 PIXABAY_PASS   = os.getenv("PIXABAY_PASS", "")
@@ -96,8 +96,9 @@ def download_via_detail(driver, url):
     html = driver.page_source
     title, category = extract_title_and_category(html)
 
-    # 🔥 필터 조건: 제목이나 카테고리에 "fire"
-    if "fire" not in title.lower() and "fire" not in category.lower():
+    # 🔥 필터 조건: 제목이나 카테고리에 fire, bell, siren
+    keywords = ["fire", "siren"]
+    if not any(k in title.lower() or k in category.lower() for k in keywords):
         print(f"   ⏩ skip (title='{title}', category='{category}')")
         return False
 
