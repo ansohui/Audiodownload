@@ -22,10 +22,10 @@ BASE_URL       = "https://pixabay.com/en/"
 SEARCH_URL     = f"{BASE_URL}sound-effects/search/{SEARCH_QUERY.replace(' ', '-')}/"
 
 HEADLESS       = False
-PAGE_START     = 2
-PAGE_END       = 125        # 원하는 페이지 범위
+PAGE_START     = 6
+PAGE_END       = 10       # 원하는 페이지 범위
 MAX_ITEMS      = 30000
-DOWNLOAD_DIR   = str(Path.home() / "Downloads" / "pixabay_fire_alarm3")
+DOWNLOAD_DIR   = str(Path.home() / "Downloads" / "pixabay_fire_alarm")
 
 PIXABAY_EMAIL  = os.getenv("PIXABAY_EMAIL", "")
 PIXABAY_PASS   = os.getenv("PIXABAY_PASS", "")
@@ -147,6 +147,7 @@ def main():
     Path(DOWNLOAD_DIR).mkdir(parents=True, exist_ok=True)
     d = build_driver()
     try:
+        print(f"▶ 실행 범위: PAGE_START={PAGE_START}, PAGE_END={PAGE_END}")
         downloaded = 0
         for p in range(PAGE_START, PAGE_END + 1):
             if downloaded >= MAX_ITEMS: break
